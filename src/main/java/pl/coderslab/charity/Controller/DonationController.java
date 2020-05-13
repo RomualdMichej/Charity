@@ -40,7 +40,6 @@ public class DonationController {
     }
 
     @PostMapping("/add")
-    @ResponseBody
     public String addDonation(@RequestParam String categoriesId,
                               @RequestParam Integer bags,
                               @RequestParam Long organizationId,
@@ -74,7 +73,6 @@ public class DonationController {
 
         donationRepository.save(donation);
 
-        return  " l " + " " + categoriesId + " " + bags + " " + organizationId + " " + address
-                + " " + city + " " + postcode + " " + phone + " " + data + " " + time + " " + more_info;
+        return  "redirect:";
     }
 }
