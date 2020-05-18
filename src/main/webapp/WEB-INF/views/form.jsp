@@ -83,10 +83,12 @@
             <div data-step="1" class="active">
                 <h3>Zaznacz co chcesz oddać:</h3>
 
-                <c:forEach items="${categoryList}" var="category">
+                <c:forEach items="${categoryList}" var="category" varStatus="loopStatus">
                     <div class="form-group form-group--checkbox">
                         <label>
                             <input
+                                    id="categorieInput${loopStatus.count}"
+                                    class="category"
                                     type="checkbox"
                                     name="categoriesId"
                                     value=${category.id}
@@ -98,7 +100,7 @@
                 </c:forEach>
 
                 <div class="form-group form-group--buttons">
-                    <button type="button" class="btn next-step">Dalej</button>
+                    <button id="button1" type="button" class="btn next-step">Dalej</button>
                 </div>
             </div>
 
@@ -109,7 +111,7 @@
                 <div class="form-group form-group--inline">
                     <label>
                         Liczba 60l worków:
-                        <input type="number" name="bags" step="1" min="1" />
+                        <input id="number" type="number" name="bags" step="1" min="1" />
                     </label>
                 </div>
 
@@ -124,10 +126,15 @@
             <!-- STEP 4 -->
             <div data-step="3">
                 <h3>Wybierz organizacje, której chcesz pomóc:</h3> institutionList
-                <c:forEach items="${institutionList}" var="institution">
+                <c:forEach items="${institutionList}" var="institution" varStatus="loopStatus">
                     <div class="form-group form-group--checkbox">
                         <label>
-                            <input type="radio" name="organizationId" value=${institution.id} />
+                            <input
+                                    id="institutionInput${loopStatus.count}"
+                                    class="institution"
+                                    type="radio"
+                                    name="organizationId"
+                                    value=${institution.id} />
                             <span class="checkbox radio"></span>
                             <span class="description">
                       <div class="title">Fundacja ${institution.name}</div>
@@ -138,24 +145,9 @@
                         </label>
                     </div>
                 </c:forEach>
-
-<%--                <div class="form-group form-group--checkbox">--%>
-<%--                    <label>--%>
-<%--                        <input type="radio" name="organization" value="old" />--%>
-<%--                        <span class="checkbox radio"></span>--%>
-<%--                        <span class="description">--%>
-<%--                  <div class="title">Fundacja “Dla dzieci"</div>--%>
-<%--                  <div class="subtitle">--%>
-<%--                    Cel i misja: Pomoc osobom znajdującym się w trudnej sytuacji--%>
-<%--                    życiowej.--%>
-<%--                  </div>--%>
-<%--                </span>--%>
-<%--                    </label>--%>
-<%--                </div>--%>
-
                 <div class="form-group form-group--buttons">
                     <button type="button" class="btn prev-step">Wstecz</button>
-                    <button type="button" class="btn next-step">Dalej</button>
+                    <button id="button2" type="button" class="btn next-step">Dalej</button>
                 </div>
             </div>
 
@@ -167,22 +159,22 @@
                     <div class="form-section--column">
                         <h4>Adres odbioru</h4>
                         <div class="form-group form-group--inline">
-                            <label> Ulica <input type="text" name="address" /> </label>
+                            <label> Ulica <input id="streetInput" type="text" name="address" /> </label>
                         </div>
 
                         <div class="form-group form-group--inline">
-                            <label> Miasto <input type="text" name="city" /> </label>
+                            <label> Miasto <input id="cityInput" type="text" name="city" /> </label>
                         </div>
 
                         <div class="form-group form-group--inline">
                             <label>
-                                Kod pocztowy <input type="text" name="postcode" />
+                                Kod pocztowy <input id="zipCodeInput" type="text" name="postcode" />
                             </label>
                         </div>
 
                         <div class="form-group form-group--inline">
                             <label>
-                                Numer telefonu <input type="phone" name="phone" />
+                                Numer telefonu <input id="phoneInput" type="phone" name="phone" />
                             </label>
                         </div>
                     </div>
@@ -190,24 +182,24 @@
                     <div class="form-section--column">
                         <h4>Termin odbioru</h4>
                         <div class="form-group form-group--inline">
-                            <label> Data <input type="date" name="data" /> </label>
+                            <label> Data <input id="dataInput" type="date" name="data" /> </label>
                         </div>
 
                         <div class="form-group form-group--inline">
-                            <label> Godzina <input type="time" name="time" /> </label>
+                            <label> Godzina <input id="hourInput" type="time" name="time" /> </label>
                         </div>
 
                         <div class="form-group form-group--inline">
                             <label>
                                 Uwagi dla kuriera
-                                <textarea name="more_info" rows="5"></textarea>
+                                <textarea id="textInput" name="more_info" rows="5"></textarea>
                             </label>
                         </div>
                     </div>
                 </div>
                 <div class="form-group form-group--buttons">
                     <button type="button" class="btn prev-step">Wstecz</button>
-                    <button type="button" class="btn next-step">Dalej</button>
+                    <button id="gul" type="button" class="btn next-step">Dalej</button>
                 </div>
             </div>
 
@@ -239,19 +231,19 @@
                         <div class="form-section--column">
                             <h4>Adres odbioru:</h4>
                             <ul>
-                                <li>Prosta 51</li>
-                                <li>Warszawa</li>
-                                <li>99-098</li>
-                                <li>123 456 789</li>
+                                <li id="street">Prosta 51</li>
+                                <li id="city">Warszawa</li>
+                                <li id="zip">99-098</li>
+                                <li id="phone">123 456 789</li>
                             </ul>
                         </div>
 
                         <div class="form-section--column">
                             <h4>Termin odbioru:</h4>
                             <ul>
-                                <li>13/12/2018</li>
-                                <li>15:40</li>
-                                <li>Brak uwag</li>
+                                <li id="date">13/12/2018</li>
+                                <li id="hour">15:40</li>
+                                <li id="text">Brak uwag</li>
                             </ul>
                         </div>
                     </div>
@@ -268,42 +260,6 @@
     </div>
 </section>
 <%@ include file="/WEB-INF/views/footer.jsp" %>
-<%--<footer>--%>
-<%--    <div class="contact">--%>
-<%--        <h2>Skontaktuj się z nami</h2>--%>
-<%--        <h3>Formularz kontaktowy</h3>--%>
-<%--        <form class="form--contact">--%>
-<%--            <div class="form-group form-group--50">--%>
-<%--                <input type="text" name="name" placeholder="Imię" />--%>
-<%--            </div>--%>
-<%--            <div class="form-group form-group--50">--%>
-<%--                <input type="text" name="surname" placeholder="Nazwisko" />--%>
-<%--            </div>--%>
-
-<%--            <div class="form-group">--%>
-<%--            <textarea--%>
-<%--                    name="message"--%>
-<%--                    placeholder="Wiadomość"--%>
-<%--                    rows="1"--%>
-<%--            ></textarea>--%>
-<%--            </div>--%>
-
-<%--            <button class="btn" type="submit">Wyślij</button>--%>
-<%--        </form>--%>
-<%--    </div>--%>
-<%--    <div class="bottom-line">--%>
-<%--        <span class="bottom-line--copy">Copyright &copy; 2018</span>--%>
-<%--        <div class="bottom-line--icons">--%>
-<%--            <a href="#" class="btn btn--small"--%>
-<%--            ><img src="images/icon-facebook.svg"--%>
-<%--            /></a>--%>
-<%--            <a href="#" class="btn btn--small"--%>
-<%--            ><img src="images/icon-instagram.svg"--%>
-<%--            /></a>--%>
-<%--        </div>--%>
-<%--    </div>--%>
-<%--</footer>--%>
-
 <script src="<c:url value="/resources/js/app.js"/>"></script>
 </body>
 </html>

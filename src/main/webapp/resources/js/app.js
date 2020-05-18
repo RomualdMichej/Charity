@@ -171,4 +171,116 @@ document.addEventListener("DOMContentLoaded", function() {
   if (form !== null) {
     new FormSteps(form);
   }
+
+
+  var cus = document.querySelector('body > section');
+  // console.log(cus);
+  var t  = cus.lastElementChild;
+  // console.log(t);
+  var v = t.lastElementChild;
+  // console.log(v);
+  var re = v.lastElementChild;
+  // console.log(re)
+
+  var ruf = re.children;
+  // console.log(ruf[1]);
+
+  var to = ruf[1].firstElementChild.lastElementChild.firstElementChild.querySelector('.summary--text').innerHTML;
+  // console.log(to);
+
+  var button = document.querySelector('#gul');
+  var number = document.querySelector('#number');
+  var street = document.querySelector('#streetInput');
+  var city = document.querySelector('#cityInput');
+  var zip = document.querySelector('#zipCodeInput');
+  var phone = document.querySelector('#phoneInput');
+  var date = document.querySelector('#dataInput');
+  var hour = document.querySelector('#hourInput');
+  var text = document.querySelector('#textInput');
+  var button1 = document.querySelector('#button1');
+  var button2 = document.querySelector('#button2');
+  var category = document.querySelectorAll('.category');
+  var institution = document.querySelectorAll('.institution');
+  var categoryId = '';
+  var categoryName = '';
+  var institutionId = '';
+  var institutionName = '';
+
+  button1.addEventListener("click", function () {
+    for (var i = 0; i < category.length; i++) {
+      // console.log(categoryId[i]);
+      input = category[i];
+      if(category[i].checked){
+        categoryId += category[i].value;
+      }
+    }
+  });
+
+  button2.addEventListener("click", function () {
+    for (var i = 0; i < institution.length; i++) {
+      // console.log(institution[i]);
+      input = institution[i];
+      if(institution[i].checked){
+        institutionId += institution[i].value;
+      }
+    }
+  });
+
+
+  button.addEventListener("click", function () {
+    console.log('a. ' + institutionId);
+    console.log('b. ' + categoryId);
+    if(categoryId == 1){
+      categoryName = ' ubrań, które nadają się do ponownego użycia.';
+    }else if(categoryId == 2) {
+      categoryName = ' ubrań, do wyrzucenia.';
+    }else if(categoryId == 3){
+      categoryName = ' zabawek.';
+    }else if(categoryId == 4) {
+      categoryName = ' książek.';
+    }else if(categoryId == 6) {
+      categoryName = ' piwerka.';
+    }else if(categoryId == 8) {
+      categoryName = ' chomikowych tabsów.';
+    }else {
+      categoryName = ' różnych rzeczy.';
+    }
+
+    if(institutionId == 1){
+      institutionName = 'Dbam o Zdrowie';
+    }else if(institutionId == 2) {
+      institutionName = 'A kogo';
+    }else if(institutionId == 3){
+      institutionName = ' Dla dzieci';
+    }else if(institutionId == 4) {
+      institutionName = 'Bez domu';
+    }else if(institutionId == 6) {
+      institutionName = 'Szalony chomik';
+    }else if(institutionId == 7) {
+      institutionName = 'Browarek dla Janusza';
+    }
+
+    ruf[1].firstElementChild.lastElementChild.lastElementChild.querySelector('.summary--text').innerHTML = 'Dla fundacji ' + ' "' + institutionName + '".';
+
+    // button.addEventListener("click", function () {
+    var w1 = ' worek';
+    var w2 = ' worki';
+    var w3 = ' worków';
+    if (number.value == 1) {
+      ruf[1].firstElementChild.lastElementChild.firstElementChild.querySelector('.summary--text').innerHTML = number.value + w1 + ' ' + categoryName;
+    }else if(number.value == 2 || number.value == 3 || number.value == 4 ){
+      ruf[1].firstElementChild.lastElementChild.firstElementChild.querySelector('.summary--text').innerHTML = number.value + w2 + ' ' + categoryName;
+    }else {
+      ruf[1].firstElementChild.lastElementChild.firstElementChild.querySelector('.summary--text').innerHTML = number.value + w3 + ' ' + categoryName;
+    }
+    document.querySelector('#street').innerHTML = street.value;
+    document.querySelector('#city').innerHTML = city.value;
+    document.querySelector('#zip').innerHTML = zip.value;
+    document.querySelector('#phone').innerHTML = phone.value;
+    document.querySelector('#date').innerHTML = date.value;
+    document.querySelector('#hour').innerHTML = hour.value;
+    if(text.value) {
+      document.querySelector('#text').innerHTML = text.value;
+    }
+  });
 });
