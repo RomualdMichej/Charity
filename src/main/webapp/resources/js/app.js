@@ -172,9 +172,7 @@ document.addEventListener("DOMContentLoaded", function() {
     new FormSteps(form);
   }
 
-  var bags = document.querySelector('#bags');
-  var inst = document.querySelector('#inst');
-  var button = document.querySelector('#gul');
+  var button = document.querySelector('#button');
   var number = document.querySelector('#number');
   var street = document.querySelector('#streetInput');
   var city = document.querySelector('#cityInput');
@@ -183,59 +181,39 @@ document.addEventListener("DOMContentLoaded", function() {
   var date = document.querySelector('#dataInput');
   var hour = document.querySelector('#hourInput');
   var text = document.querySelector('#textInput');
-  var button1 = document.querySelector('#button1');
-  var button2 = document.querySelector('#button2');
   var category = document.querySelectorAll('.category');
+  var categoryNames = document.querySelectorAll('.categoryName');
   var institution = document.querySelectorAll('.institution');
   var institutionNames = document.querySelectorAll('.institutionName');
-  var categoryId = '';
-  var categoryName = '';
   var institutionName = '';
 
-  button1.addEventListener("click", function () {
+  button.addEventListener("click", function () {
+
+    var bags = document.querySelector('#bags');
+    var w = '';
+    if (number.value == 1) {
+      w = ' worek zawierający:';
+    }else if(number.value == 2 || number.value == 3 || number.value == 4 ){
+      w = ' worki zawierające:';
+    }else {
+      w =  ' worków zawierających:';
+    }
+    bags.innerHTML = '<h4>' + number.value + w +'</h4>';
+    var newUl = document.createElement("ul");
+    bags.appendChild(newUl);
     for (var i = 0; i < category.length; i++) {
       if(category[i].checked){
-        categoryId += category[i].value;
+        var newLi = document.createElement("li");
+        newLi.innerHTML = '-' + categoryNames[i].innerHTML;
+        newUl.appendChild(newLi);
       }
     }
-  });
-
-  button2.addEventListener("click", function () {
     for (var i = 0; i < institution.length; i++) {
-      if(institution[i].checked){
+      if (institution[i].checked) {
         institutionName = institutionNames[i].innerHTML;
       }
     }
-  });
-
-
-  button.addEventListener("click", function () {
-    if(categoryId == 1){
-      categoryName = ' ubrań, które nadają się do ponownego użycia.';
-    }else if(categoryId == 2) {
-      categoryName = ' ubrań, do wyrzucenia.';
-    }else if(categoryId == 3){
-      categoryName = ' zabawek.';
-    }else if(categoryId == 4) {
-      categoryName = ' książek.';
-    }else if(categoryId == 6) {
-      categoryName = ' piwerka.';
-    }else if(categoryId == 8) {
-      categoryName = ' chomikowych tabsów.';
-    }else {
-      categoryName = ' różnych rzeczy.';
-    }
-
-    var w = '';
-    if (number.value == 1) {
-      w = ' worek';
-    }else if(number.value == 2 || number.value == 3 || number.value == 4 ){
-      w = ' worki';
-    }else {
-      w =  ' worków';
-    }
-    bags.innerHTML = number.value + w + ' ' + categoryName;
-    inst.innerHTML = 'Dla fundacji ' + institutionName + '.';
+    document.querySelector('#inst').innerHTML = '<h4>' + 'Dla fundacji ' + institutionName + '.' + '</h4>';
     document.querySelector('#street').innerHTML = street.value;
     document.querySelector('#city').innerHTML = city.value;
     document.querySelector('#zip').innerHTML = zip.value;

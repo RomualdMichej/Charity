@@ -94,7 +94,7 @@
                                     value=${category.id}
                             />
                             <span class="checkbox"></span>
-                            <span class="description">${category.name}</span>
+                            <span class="description categoryName">${category.name}</span>
                         </label>
                     </div>
                 </c:forEach>
@@ -200,7 +200,7 @@
                 </div>
                 <div class="form-group form-group--buttons">
                     <button type="button" class="btn prev-step">Wstecz</button>
-                    <button id="gul" type="button" class="btn next-step">Dalej</button>
+                    <button id="button" type="button" class="btn next-step">Dalej</button>
                 </div>
             </div>
 
