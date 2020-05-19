@@ -125,7 +125,7 @@
 
             <!-- STEP 4 -->
             <div data-step="3">
-                <h3>Wybierz organizacje, której chcesz pomóc:</h3> institutionList
+                <h3>Wybierz organizacje, której chcesz pomóc:</h3>
                 <c:forEach items="${institutionList}" var="institution" varStatus="loopStatus">
                     <div class="form-group form-group--checkbox">
                         <label>
@@ -137,7 +137,8 @@
                                     value=${institution.id} />
                             <span class="checkbox radio"></span>
                             <span class="description">
-                      <div class="title">Fundacja ${institution.name}</div>
+                      <div class="title">Fundacja:</div>
+                      <div class="title institutionName">"${institution.name}"</div>
                       <div class="subtitle">
                         Cel i misja: ${institution.description}.
                       </div>
@@ -213,14 +214,14 @@
                         <ul>
                             <li>
                                 <span class="icon icon-bag"></span>
-                                <span class="summary--text"
+                                <span id="bags" class="summary--text"
                                 >4 worki ubrań w dobrym stanie dla dzieci</span
                                 >
                             </li>
 
                             <li>
                                 <span class="icon icon-hand"></span>
-                                <span class="summary--text"
+                                <span id="inst" class="summary--text"
                                 >Dla fundacji "Mam marzenie" w Warszawie</span
                                 >
                             </li>

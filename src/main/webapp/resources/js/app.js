@@ -172,22 +172,8 @@ document.addEventListener("DOMContentLoaded", function() {
     new FormSteps(form);
   }
 
-
-  var cus = document.querySelector('body > section');
-  // console.log(cus);
-  var t  = cus.lastElementChild;
-  // console.log(t);
-  var v = t.lastElementChild;
-  // console.log(v);
-  var re = v.lastElementChild;
-  // console.log(re)
-
-  var ruf = re.children;
-  // console.log(ruf[1]);
-
-  var to = ruf[1].firstElementChild.lastElementChild.firstElementChild.querySelector('.summary--text').innerHTML;
-  // console.log(to);
-
+  var bags = document.querySelector('#bags');
+  var inst = document.querySelector('#inst');
   var button = document.querySelector('#gul');
   var number = document.querySelector('#number');
   var street = document.querySelector('#streetInput');
@@ -201,15 +187,13 @@ document.addEventListener("DOMContentLoaded", function() {
   var button2 = document.querySelector('#button2');
   var category = document.querySelectorAll('.category');
   var institution = document.querySelectorAll('.institution');
+  var institutionNames = document.querySelectorAll('.institutionName');
   var categoryId = '';
   var categoryName = '';
-  var institutionId = '';
   var institutionName = '';
 
   button1.addEventListener("click", function () {
     for (var i = 0; i < category.length; i++) {
-      // console.log(categoryId[i]);
-      input = category[i];
       if(category[i].checked){
         categoryId += category[i].value;
       }
@@ -218,18 +202,14 @@ document.addEventListener("DOMContentLoaded", function() {
 
   button2.addEventListener("click", function () {
     for (var i = 0; i < institution.length; i++) {
-      // console.log(institution[i]);
-      input = institution[i];
       if(institution[i].checked){
-        institutionId += institution[i].value;
+        institutionName = institutionNames[i].innerHTML;
       }
     }
   });
 
 
   button.addEventListener("click", function () {
-    console.log('a. ' + institutionId);
-    console.log('b. ' + categoryId);
     if(categoryId == 1){
       categoryName = ' ubrań, które nadają się do ponownego użycia.';
     }else if(categoryId == 2) {
@@ -246,33 +226,16 @@ document.addEventListener("DOMContentLoaded", function() {
       categoryName = ' różnych rzeczy.';
     }
 
-    if(institutionId == 1){
-      institutionName = 'Dbam o Zdrowie';
-    }else if(institutionId == 2) {
-      institutionName = 'A kogo';
-    }else if(institutionId == 3){
-      institutionName = ' Dla dzieci';
-    }else if(institutionId == 4) {
-      institutionName = 'Bez domu';
-    }else if(institutionId == 6) {
-      institutionName = 'Szalony chomik';
-    }else if(institutionId == 7) {
-      institutionName = 'Browarek dla Janusza';
-    }
-
-    ruf[1].firstElementChild.lastElementChild.lastElementChild.querySelector('.summary--text').innerHTML = 'Dla fundacji ' + ' "' + institutionName + '".';
-
-    // button.addEventListener("click", function () {
-    var w1 = ' worek';
-    var w2 = ' worki';
-    var w3 = ' worków';
+    var w = '';
     if (number.value == 1) {
-      ruf[1].firstElementChild.lastElementChild.firstElementChild.querySelector('.summary--text').innerHTML = number.value + w1 + ' ' + categoryName;
+      w = ' worek';
     }else if(number.value == 2 || number.value == 3 || number.value == 4 ){
-      ruf[1].firstElementChild.lastElementChild.firstElementChild.querySelector('.summary--text').innerHTML = number.value + w2 + ' ' + categoryName;
+      w = ' worki';
     }else {
-      ruf[1].firstElementChild.lastElementChild.firstElementChild.querySelector('.summary--text').innerHTML = number.value + w3 + ' ' + categoryName;
+      w =  ' worków';
     }
+    bags.innerHTML = number.value + w + ' ' + categoryName;
+    inst.innerHTML = 'Dla fundacji ' + institutionName + '.';
     document.querySelector('#street').innerHTML = street.value;
     document.querySelector('#city').innerHTML = city.value;
     document.querySelector('#zip').innerHTML = zip.value;
