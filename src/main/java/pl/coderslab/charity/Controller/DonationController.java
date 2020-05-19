@@ -73,6 +73,6 @@ public class DonationController {
 
         donationRepository.save(donation);
 
-        return  "redirect:";
+        return  "form-confirmation";
     }
 }

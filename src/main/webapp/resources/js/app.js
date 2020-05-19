@@ -172,6 +172,8 @@ document.addEventListener("DOMContentLoaded", function() {
     new FormSteps(form);
   }
 
+  //kod napisany przez RM
+
   var button = document.querySelector('#button');
   var number = document.querySelector('#number');
   var street = document.querySelector('#streetInput');
