@@ -1,13 +1,10 @@
 package pl.coderslab.charity.model;
 
-import org.springframework.stereotype.Component;
-
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
-@Component
 @Entity
 @Table(name = "donations")
 public class Donation {

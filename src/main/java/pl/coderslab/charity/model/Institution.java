@@ -1,10 +1,7 @@
 package pl.coderslab.charity.model;
 
-import org.springframework.stereotype.Component;
-
 import javax.persistence.*;
 
-@Component
 @Entity
 @Table(name = "institutions")
 public class Institution {
