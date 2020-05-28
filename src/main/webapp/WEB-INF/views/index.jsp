@@ -52,7 +52,7 @@
     </section>
 
     <section class="steps">
-        <a href="/donation/" class="btn btn--large">ODDAJ RZECZY</a>
+        <a href="/donation/add" class="btn btn--large">ODDAJ RZECZY</a>
     </section>
 
     <section class="steps">

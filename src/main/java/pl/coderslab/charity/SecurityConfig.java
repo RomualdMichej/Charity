@@ -1,5 +1,6 @@
 package pl.coderslab.charity;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -8,19 +9,37 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation
         .web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import pl.coderslab.charity.seciurityUser.CustomUserDetailsService;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+    private CustomUserDetailsService customUserDetailsService;
+
+    @Autowired
+    public SecurityConfig(CustomUserDetailsService customUserDetailsService) {
+        this.customUserDetailsService = customUserDetailsService;
+    }
 
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-                .withUser("user1").password("{noop}user123").roles("USER")
-                .and()
-                .withUser("admin1").password("{noop}admin123").roles("ADMIN");
+
+        auth.userDetailsService(customUserDetailsService)
+                .passwordEncoder(passwordEncoder());
     }
+
+//    @Override
+//    protected void configure(HttpSecurity http) throws Exception {
+//
+//        http.authorizeRequests()
+//                .antMatchers("/user/**", "/").permitAll()
+//                .antMatchers("/donation/**").hasAnyAuthority("USER", "ADMIN")
+////                .antMatchers("/authorForm/**").hasRole("ADMIN")
+//                .and().formLogin().permitAll()
+//                .and().logout().logoutSuccessUrl("/login");
+//
+//    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -28,7 +47,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/login")
                 .permitAll()
                 .antMatchers("/donation/**")
-                .hasAnyRole("ADMIN", "USER")
+                .hasAnyAuthority("ADMIN", "USER")
                 .and()
                 .formLogin()
                 .loginPage("/login")
@@ -43,10 +62,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .csrf()
                 .disable();
-
-//    @Bean
-//    public BCryptPasswordEncoder passwordEncoder(){
-//        return new BCryptPasswordEncoder();
-//    }
+    }
+    @Bean
+    public BCryptPasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder();
     }
 }

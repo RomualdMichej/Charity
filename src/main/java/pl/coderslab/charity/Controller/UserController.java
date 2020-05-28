@@ -13,17 +13,17 @@ public class UserController {
 
     private final UserRepository userRepository;
 
-//    private final BCryptPasswordEncoder passwordEncoder;
-//
-//    public UserController(UserRepository userRepository, BCryptPasswordEncoder passwordEncoder) {
-//        this.userRepository = userRepository;
-//        this.passwordEncoder = passwordEncoder;
-//    }
+    private final BCryptPasswordEncoder passwordEncoder;
 
-
-    public UserController(UserRepository userRepository) {
+    public UserController(UserRepository userRepository, BCryptPasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
+
+
+//    public UserController(UserRepository userRepository) {
+//        this.userRepository = userRepository;
+//    }
 
     @GetMapping("/register")
     public String register(Model model) {
@@ -33,7 +33,7 @@ public class UserController {
 
     @PostMapping("/register")
     public String postRegister(@ModelAttribute User user){
-//        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
         return "login";
     }

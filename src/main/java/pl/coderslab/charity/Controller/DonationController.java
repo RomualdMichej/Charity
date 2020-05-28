@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@RequestMapping("/donation/")
+@RequestMapping("/donation")
 public class DonationController {
 
     private final DonationRepository donationRepository;
@@ -31,7 +31,7 @@ public class DonationController {
         this.institutionReopsitory = institutionReopsitory;
     }
 
-    @GetMapping("/")
+    @GetMapping("/add")
     public String show(Model model) {
         model.addAttribute("categoryList", categoryRepository.findAll());
         model.addAttribute("institutionList", institutionReopsitory.findAll());
