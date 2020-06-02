@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.charity.model.Category;
 import pl.coderslab.charity.model.Donation;
+import pl.coderslab.charity.model.User;
 import pl.coderslab.charity.repositorys.CategoryRepository;
 import pl.coderslab.charity.repositorys.DonationRepository;
 import pl.coderslab.charity.repositorys.InstitutionReopsitory;
@@ -36,8 +37,10 @@ public class DonationController {
         model.addAttribute("categoryList", categoryRepository.findAll());
         model.addAttribute("institutionList", institutionReopsitory.findAll());
         model.addAttribute("donation", new Donation());
+//        return "fo";
         return "form";
     }
+
 
     @PostMapping("/add")
     public String addDonation(@RequestParam String categoriesId,
@@ -75,4 +78,10 @@ public class DonationController {
 
         return  "form-confirmation";
     }
+
+//    @PostMapping("/add")
+//    public String postRegister(@ModelAttribute Donation donation){
+//        donationRepository.save(donation);
+//        return "form-confirmation";
+//    }
 }

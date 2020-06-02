@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -77,7 +78,7 @@
     <div class="form--steps-container">
         <div class="form--steps-counter">Krok <span>1</span>/4</div>
 
-        <form action="add" method="post">
+        <spring:form method="post">
 
             <!-- STEP 1: class .active is switching steps -->
             <div data-step="1" class="active">
@@ -154,7 +155,7 @@
 
             <!-- STEP 5 -->
             <div data-step="4">
-                <h3>Podaj adres oraz termin odbioru rzecz przez kuriera:</h3>
+                <h3>Podaj adres oraz termin odbioru rzeczy przez kuriera:</h3>
 
                 <div class="form-section form-section--columns">
                     <div class="form-section--column">
@@ -256,7 +257,7 @@
                 </div>
             </div>
 <%--        </form>--%>
-        </form>
+        </spring:form>
 
     </div>
 </section>

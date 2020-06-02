@@ -1,4 +1,4 @@
-package pl.coderslab.charity.seciurityUser;
+package pl.coderslab.charity.seciurytyUser;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -26,7 +26,7 @@ public class CustomUserDetailsServiceImpl implements CustomUserDetailsService {
     public UserDetails loadUserByUsername(String userEmail) throws UsernameNotFoundException {
         User user = userRepository.findAllByEmail(userEmail);
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
-        grantedAuthorities.add(new SimpleGrantedAuthority("ADMIN"));
+        grantedAuthorities.add(new SimpleGrantedAuthority("USER"));
         return new CurentUser(user.getEmail(),
                 user.getPassword(),
                 grantedAuthorities,

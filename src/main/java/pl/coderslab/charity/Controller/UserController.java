@@ -1,5 +1,6 @@
 package pl.coderslab.charity.Controller;
 
+//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,18 +13,12 @@ import pl.coderslab.charity.repositorys.UserRepository;
 public class UserController {
 
     private final UserRepository userRepository;
-
     private final BCryptPasswordEncoder passwordEncoder;
 
     public UserController(UserRepository userRepository, BCryptPasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
     }
-
-
-//    public UserController(UserRepository userRepository) {
-//        this.userRepository = userRepository;
-//    }
 
     @GetMapping("/register")
     public String register(Model model) {
