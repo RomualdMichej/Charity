@@ -29,6 +29,7 @@ public class UserController {
     @PostMapping("/register")
     public String postRegister(@ModelAttribute User user){
         user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setEnable(1);
         userRepository.save(user);
         return "login";
     }

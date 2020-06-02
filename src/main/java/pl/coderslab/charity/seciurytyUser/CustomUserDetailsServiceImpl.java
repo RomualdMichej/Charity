@@ -26,7 +26,11 @@ public class CustomUserDetailsServiceImpl implements CustomUserDetailsService {
     public UserDetails loadUserByUsername(String userEmail) throws UsernameNotFoundException {
         User user = userRepository.findAllByEmail(userEmail);
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
-        grantedAuthorities.add(new SimpleGrantedAuthority("USER"));
+        if(user.getEnable() == 1) {
+            grantedAuthorities.add(new SimpleGrantedAuthority("USER"));
+        }else {
+            grantedAuthorities.add(new SimpleGrantedAuthority("ADMIN"));
+        }
         return new CurentUser(user.getEmail(),
                 user.getPassword(),
                 grantedAuthorities,

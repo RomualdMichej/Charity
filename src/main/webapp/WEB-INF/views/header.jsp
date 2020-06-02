@@ -14,6 +14,8 @@
                 <li><a href="/logout">Wyloguj</a></li>
             </form>
         </sec:authorize>
+        <li><a href="hi/">HI</a></li>
+
     </ul>
 
     <ul>

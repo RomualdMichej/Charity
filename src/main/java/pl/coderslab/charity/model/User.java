@@ -11,6 +11,7 @@ public class User {
     private Long id;
     private String email;
     private String password;
+    private int enable;
 
     public Long getId() {
         return id;
@@ -22,6 +23,10 @@ public class User {
 
     public String getPassword() {
         return password;
+    }
+
+    public int getEnable() {
+        return enable;
     }
 
     public void setId(Long id) {
@@ -36,4 +41,7 @@ public class User {
         this.password = password;
     }
 
+    public void setEnable(int enable) {
+        this.enable = enable;
+    }
 }
