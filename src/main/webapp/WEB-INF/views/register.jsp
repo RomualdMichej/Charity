@@ -22,11 +22,16 @@
         <div class="form-group">
           <spring:input path="email" type="email" name="email" placeholder="Email" />
         </div>
+        <c:if test="${not empty note}">
+          <div class="form-group">
+            <p class="nova">${note}</p>
+          </div>
+        </c:if>
         <div class="form-group">
           <spring:input path="password" type="password" name="password" placeholder="Hasło" />
         </div>
         <div class="form-group">
-          <input type="password" name="password2" placeholder="Powtórz hasło" />
+          <spring:input path="password2" type="password" name="password2" placeholder="Powtórz hasło" />
         </div>
 
         <div class="form-group form-group--buttons">

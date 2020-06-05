@@ -12,6 +12,8 @@ public class User {
     private String email;
     private String password;
     private int enable;
+    @Transient
+    private String password2;
 
     public Long getId() {
         return id;
@@ -29,6 +31,10 @@ public class User {
         return enable;
     }
 
+    public String getPassword2() {
+        return password2;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -43,5 +49,9 @@ public class User {
 
     public void setEnable(int enable) {
         this.enable = enable;
+    }
+
+    public void setPassword2(String password2) {
+        this.password2 = password2;
     }
 }

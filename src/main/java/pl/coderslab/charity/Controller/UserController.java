@@ -27,10 +27,16 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public String postRegister(@ModelAttribute User user){
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
+    public String postRegister(@ModelAttribute User user, Model model){
         user.setEnable(1);
-        userRepository.save(user);
-        return "login";
+        String note = "Hasła nie są identyczne!";
+        if(user.getPassword().equals(user.getPassword2())) {
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+            userRepository.save(user);
+            return "login";
+        }else {
+            model.addAttribute("note", note);
+            return "register";
+        }
     }
 }
