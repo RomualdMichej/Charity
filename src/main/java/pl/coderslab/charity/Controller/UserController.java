@@ -4,6 +4,8 @@ package pl.coderslab.charity.Controller;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.charity.model.User;
 import pl.coderslab.charity.repositorys.UserRepository;
@@ -20,6 +22,13 @@ public class UserController {
         this.passwordEncoder = passwordEncoder;
     }
 
+    @GetMapping("/showAll")
+    public String showAllUsers(Model model) {
+        model.addAttribute("userList", userRepository.findAll());
+        return "allUsers";
+    }
+
+
     @GetMapping("/register")
     public String register(Model model) {
         model.addAttribute("user", new User());
@@ -27,7 +36,7 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public String postRegister(@ModelAttribute User user, Model model){
+    public String postRegister(User user, Model model){
         user.setEnable(1);
         String note = "Hasła nie są identyczne!";
         if(user.getPassword().equals(user.getPassword2())) {
@@ -38,5 +47,17 @@ public class UserController {
             model.addAttribute("note", note);
             return "register";
         }
+    }
+
+    @GetMapping("/edit")
+    public String initEditUser(@RequestParam long toEditId, Model model) {
+        model.addAttribute("user", userRepository.findById(toEditId));
+        return "register";
+    }
+
+    @PostMapping("/edit")
+    public String editUser(User user) {
+        userRepository.save(user);
+        return "redirect:";
     }
 }

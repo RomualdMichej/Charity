@@ -42,6 +42,20 @@ h1 {
   margin: 0.67em 0;
 }
 
+.table {
+  display: table;
+  margin: 0 auto;
+}
+
+th, td {
+  border: 1px solid black;
+  padding: 10px 15px;
+  border-collapse: separate;
+  font-size: 3.5rem;
+
+  /*background-color: cornflowerblue;*/
+}
+
 .nova {
   background-color: lightpink;
   display: inline-block;
