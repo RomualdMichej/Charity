@@ -15,8 +15,9 @@
 <header>
     <%@ include file="/WEB-INF/views/header.jsp" %>
 </header>
-
-    <a href="/user/showAll" class="btn btn--large">Edycja urzytkowników</a>
+<section class="steps">
+<a href="/user/showAll" class="btn btn--large">Edycja urzytkowników</a>
+</section>
 
 <%@ include file="/WEB-INF/views/footer.jsp" %>
 </body>

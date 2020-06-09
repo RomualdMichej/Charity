@@ -15,12 +15,22 @@
 <header>
     <%@ include file="/WEB-INF/views/header.jsp" %>
 </header>
+<section class="steps">
+<h2>Urzytkownicy</h2>
+</section>
+<section>
+<form action="registerAdmin" method="get">
+        <h1><input type="submit" value="Dodaj administratora"></h1>
+</form>
+</section>
 
+
+<section class="steps">
 <table class="table" border="1">
     <thead>
     <tr>
+        <th scope="col"><h1>Id</h1></th>
         <th scope="col"><h1>Email</h1></th>
-        <th scope="col"><h1>Hasło</h1></th>
         <th scope="col"><h1>Akcja</h1></th>
     </tr>
     <thead>
@@ -28,8 +38,8 @@
     <c:forEach items="${userList}" var="user">
 
         <tr>
+            <td>${user.id}</td>
             <td>${user.email}</td>
-            <td>${user.password}</td>
             <td><form method="get"
                       action="edit">
                 <input type="hidden" name="toEditId" value="${user.id}">
@@ -44,6 +54,7 @@
     </c:forEach>
     </tbody>
 </table>
+</section>
 
 <%@ include file="/WEB-INF/views/footer.jsp" %>
 </body>

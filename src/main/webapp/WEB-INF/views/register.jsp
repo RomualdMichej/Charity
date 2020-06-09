@@ -19,6 +19,8 @@
     <section class="login-page">
       <h2>Załóż konto</h2>
       <spring:form method="post" modelAttribute="user">
+        <spring:hidden path="id"/>
+        <spring:hidden path="enable"/>
         <div class="form-group">
           <spring:input path="email" type="email" name="email" placeholder="Email" />
         </div>
