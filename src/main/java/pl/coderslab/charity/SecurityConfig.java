@@ -114,17 +114,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/login")
+                .antMatchers("/login", "/donation/**")
                 .permitAll()
                 .antMatchers
                         ("/user/showAll",
                                 "/user/remove",
                                 "/user/edit",
                                 "/admin",
-                                "/user/registerAdmin")
+                                "/user/registerAdmin",
+                                "/category/**")
                 .hasAuthority("ADMIN")
-                .antMatchers("/donation/**")
-                .hasAnyAuthority("USER", "ADMIN")
+//                .antMatchers("/donation/**")
+//                .hasAnyAuthority("USER", "ADMIN")
                 .and()
                 .formLogin()
                 .loginPage("/login")

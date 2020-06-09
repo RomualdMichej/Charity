@@ -15,13 +15,11 @@
 <header>
     <%@ include file="/WEB-INF/views/header.jsp" %>
 </header>
-<section class="login-page">
-<form method="post">
-    <div><label> Dawaj imię : <input type="text" name="username"/> </label></div>
-    <div><label> Hasło Kurła: <input type="password" name="password"/> </label></div>
-    <div><input type="submit" value="Sign In"/></div>
-    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-</form>
+<section class="steps">
+<a href="/user/showAll" class="btn btn--large">Edycja urzytkowników</a>
+</section>
+<section class="steps">
+    <a href="/category/" class="btn btn--large">Edycja kategorji</a>
 </section>
 <%@ include file="/WEB-INF/views/footer.jsp" %>
 </body>

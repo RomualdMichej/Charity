@@ -28,14 +28,14 @@ public class UserController {
     @GetMapping("/showAll")
     public String showAllUsers(Model model) {
         model.addAttribute("userList", userRepository.findAll());
-        return "allUsers";
+        return "user/allUsers";
     }
 
 
     @GetMapping("/register")
     public String register(Model model) {
         model.addAttribute("user", new User());
-        return "register";
+        return "user/register";
     }
 
     @PostMapping("/register")
@@ -45,17 +45,17 @@ public class UserController {
         if(user.getPassword().equals(user.getPassword2())) {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
             userRepository.save(user);
-            return "login";
+            return "user/login";
         }else {
             model.addAttribute("note", note);
-            return "register";
+            return "user/register";
         }
     }
 
     @GetMapping("/edit")
     public String initEditUser(@RequestParam long toEditId, Model model) {
         model.addAttribute("user", userRepository.findById(toEditId));
-        return "register";
+        return "user/register";
     }
 
     @PostMapping("/edit")
@@ -69,10 +69,10 @@ public class UserController {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
             userRepository.save(user);
             model.addAttribute("userList", userRepository.findAll());
-            return "allUsers";
+            return "user/allUsers";
         }else {
             model.addAttribute("note", note);
-            return "register";
+            return "user/register";
         }
     }
 
@@ -80,7 +80,7 @@ public class UserController {
     public String initRemoveCoUser(@RequestParam long toRemoveId, Model model) {
         model.addAttribute("user", userRepository.findById(toRemoveId));
         model.addAttribute("viewHelper", new ViewHelper());
-        return "remove";
+        return "user/remove";
     }
 
     @PostMapping("remove")
@@ -94,13 +94,13 @@ public class UserController {
             userRepository.deleteById(toRemoveId);
         }
         model.addAttribute("userList", userRepository.findAll());
-        return "allUsers";
+        return "user/allUsers";
     }
 
     @GetMapping("/registerAdmin")
     public String registerAdmin(Model model) {
         model.addAttribute("user", new User());
-        return "register";
+        return "user/register";
     }
 
     @PostMapping("/registerAdmin")
@@ -111,10 +111,10 @@ public class UserController {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
             userRepository.save(user);
             model.addAttribute("userList", userRepository.findAll());
-            return "allUsers";
+            return "user/allUsers";
         }else {
             model.addAttribute("note", note);
-            return "register";
+            return "user/register";
         }
     }
 }

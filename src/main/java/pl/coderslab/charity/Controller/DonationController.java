@@ -37,8 +37,7 @@ public class DonationController {
         model.addAttribute("categoryList", categoryRepository.findAll());
         model.addAttribute("institutionList", institutionReopsitory.findAll());
         model.addAttribute("donation", new Donation());
-//        return "fo";
-        return "form";
+        return "formDirec/form";
     }
 
 
@@ -76,7 +75,7 @@ public class DonationController {
 
         donationRepository.save(donation);
 
-        return  "form-confirmation";
+        return  "formDirec/form-confirmation";
     }
 
 //    @PostMapping("/add")
