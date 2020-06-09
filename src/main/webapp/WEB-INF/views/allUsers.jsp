@@ -31,6 +31,7 @@
     <tr>
         <th scope="col"><h1>Id</h1></th>
         <th scope="col"><h1>Email</h1></th>
+        <th scope="col"><h1>Czy admin</h1></th>
         <th scope="col"><h1>Akcja</h1></th>
     </tr>
     <thead>
@@ -40,6 +41,18 @@
         <tr>
             <td>${user.id}</td>
             <td>${user.email}</td>
+
+<%--            <c:choose>--%>
+<%--                <c:when test="${${user.enable} == 1}">--%>
+<%--                    <td>NIE</td>--%>
+<%--                </c:when>--%>
+<%--                <c:otherwise>--%>
+<%--                    <td>TAK</td>--%>
+<%--                </c:otherwise>--%>
+<%--            </c:choose>--%>
+
+
+            <td class="enable">${user.enable}</td>
             <td><form method="get"
                       action="edit">
                 <input type="hidden" name="toEditId" value="${user.id}">
@@ -57,5 +70,7 @@
 </section>
 
 <%@ include file="/WEB-INF/views/footer.jsp" %>
+<script src="<c:url value="/resources/js/app.js"/>"></script>
+
 </body>
 </html>

@@ -124,7 +124,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                                 "/user/registerAdmin")
                 .hasAuthority("ADMIN")
                 .antMatchers("/donation/**")
-                .hasAnyAuthority("USER")
+                .hasAnyAuthority("USER", "ADMIN")
                 .and()
                 .formLogin()
                 .loginPage("/login")

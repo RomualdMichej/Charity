@@ -60,11 +60,20 @@ public class UserController {
 
     @PostMapping("/edit")
     public String editUser(User user, Model model) {
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        System.out.println(user.getId());
-        userRepository.save(user);
-        model.addAttribute("userList", userRepository.findAll());
-        return "allUsers";
+//        user.setPassword(passwordEncoder.encode(user.getPassword()));
+//        userRepository.save(user);
+//        model.addAttribute("userList", userRepository.findAll());
+//        return "allUsers";
+        String note = "Hasła nie są identyczne!";
+        if(user.getPassword().equals(user.getPassword2())) {
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+            userRepository.save(user);
+            model.addAttribute("userList", userRepository.findAll());
+            return "allUsers";
+        }else {
+            model.addAttribute("note", note);
+            return "register";
+        }
     }
 
     @GetMapping("remove")
@@ -101,7 +110,8 @@ public class UserController {
         if(user.getPassword().equals(user.getPassword2())) {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
             userRepository.save(user);
-            return "login";
+            model.addAttribute("userList", userRepository.findAll());
+            return "allUsers";
         }else {
             model.addAttribute("note", note);
             return "register";

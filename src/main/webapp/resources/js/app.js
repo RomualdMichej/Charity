@@ -172,7 +172,22 @@ document.addEventListener("DOMContentLoaded", function() {
     new FormSteps(form);
   }
 
+
+
   //kod napisany przez RM
+
+  //plik allUsers
+
+  var enable = document.querySelectorAll('.enable');
+  for (var i = 0; i < enable.length ; i++) {
+    if(enable[i].innerHTML === '1') {
+      enable[i].innerHTML = 'NIE';
+    }else {
+      enable[i].innerHTML = 'TAK';
+    }
+  }
+
+  //plik form
 
   var button = document.querySelector('#button');
   var number = document.querySelector('#number');
@@ -193,9 +208,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
     var bags = document.querySelector('#bags');
     var w = '';
-    if (number.value == 1) {
+    if (number.value === '1') {
       w = ' worek zawierający:';
-    }else if(number.value == 2 || number.value == 3 || number.value == 4 ){
+    }else if(number.value === '2' || number.value === '3' || number.value === '4' ){
       w = ' worki zawierające:';
     }else {
       w =  ' worków zawierających:';
