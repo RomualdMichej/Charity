@@ -4,14 +4,10 @@ package pl.coderslab.charity.Controller;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.charity.model.User;
 import pl.coderslab.charity.repositorys.UserRepository;
 import pl.coderslab.charity.util.ViewHelper;
-
-import java.util.List;
 
 @Controller
 @RequestMapping("/user")

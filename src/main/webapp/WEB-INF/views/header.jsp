@@ -19,11 +19,15 @@
     </ul>
 
     <ul>
+
         <li><a href="/" class="btn btn--without-border active">Start</a></li>
         <li><a href="#" class="btn btn--without-border">O co chodzi?</a></li>
         <li><a href="#" class="btn btn--without-border">O nas</a></li>
         <li><a href="#" class="btn btn--without-border">Fundacje i organizacje</a></li>
         <li><a href="#" class="btn btn--without-border">Kontakt</a></li>
+        <sec:authorize access="hasAuthority('ADMIN')">
+            <li><a href="/admin" class="btn btn--without-border active">Admin Panel</a></li>
+        </sec:authorize>
     </ul>
 </nav>
 </html>

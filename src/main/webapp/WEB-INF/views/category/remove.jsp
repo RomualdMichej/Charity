@@ -15,16 +15,16 @@
 <header>
     <%@ include file="/WEB-INF/views/header.jsp" %>
 </header>
-<h1>Czy na pewno chcesz usunac urzytkownika ${user.email}?</h1>
-<input type="hidden" name="toRemoveId" value="${user.id}">
+<h1>Czy na pewno chcesz usunac kategorię ${category.name}?</h1>
+<input type="hidden" name="toRemoveId" value="${category.id}">
 <h1><form:form method="post"
-           modelAttribute="viewHelper">
+               modelAttribute="viewHelper">
     <form:hidden path="option" value="confirmed"/>
     <input type="submit" value="Tak!">
 </form:form></h1>
 
 <h1><form:form method="post"
-           modelAttribute="viewHelper">
+               modelAttribute="viewHelper">
     <form:hidden path="option" value="non-confirmed"/>
     <input type="submit" value="Nie!">
 </form:form></h1>

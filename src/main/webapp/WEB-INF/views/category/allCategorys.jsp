@@ -21,6 +21,7 @@
 <section>
     <form action="add" method="get">
         <h1><input type="submit" value="Dodaj kategorię"></h1>
+        <input type="hidden" name="toEditId" value=0>
     </form>
 </section>
 
@@ -41,7 +42,7 @@
                 <td>${category.id}</td>
                 <td>${category.name}</td>
                 <td><form method="get"
-                          action="edit">
+                          action="add"> <%--JEDNOCZEŚNIE DODAJE I EDYTUJE--%>
                     <input type="hidden" name="toEditId" value="${category.id}">
                     <input type="submit" value="Edytuj">
                 </form>
