@@ -4,7 +4,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.charity.model.Category;
-import pl.coderslab.charity.model.Donation;
 import pl.coderslab.charity.repositorys.CategoryRepository;
 import pl.coderslab.charity.util.ViewHelper;
 
@@ -19,7 +18,7 @@ public class CategoryController {
     }
 
     @GetMapping("/")
-    public String showAllUsers(Model model) {
+    public String showAllCategories(Model model) {
         model.addAttribute("categoryList", categoryRepository.findAll());
         return "category/allCategorys";
     }
@@ -36,7 +35,7 @@ public class CategoryController {
     }
 
     @PostMapping("/add") //JEDNOCZEŚNIE DODAJE I EDYTUJE
-    public String addCategoryPost(Category category, Model model) {
+    public String addCategoryPost(Category category) {
         categoryRepository.save(category);;
         return "redirect:";
     }
@@ -49,7 +48,7 @@ public class CategoryController {
     }
 
     @PostMapping("remove")
-    public String removeCategory(@RequestParam long toRemoveId, @ModelAttribute ViewHelper viewHelper, Model model) {
+    public String removeCategory(@RequestParam long toRemoveId, @ModelAttribute ViewHelper viewHelper) {
         if(viewHelper.getOption().equals("confirmed")) {
             categoryRepository.deleteById(toRemoveId);
         }

@@ -16,11 +16,11 @@
     <%@ include file="/WEB-INF/views/header.jsp" %>
 </header>
 <section class="steps">
-    <h2>Kategorie</h2>
+    <h2>Fundacje</h2>
 </section>
 <section>
     <form action="add" method="get">
-        <h1><input type="submit" value="Dodaj kategorię"></h1>
+        <h1><input type="submit" value="Dodaj fundację"></h1>
         <input type="hidden" name="toEditId" value=0>
     </form>
 </section>
@@ -32,23 +32,25 @@
         <tr>
             <th scope="col"><h1>Id</h1></th>
             <th scope="col"><h1>Nazwa</h1></th>
+            <th scope="col"><h1>Opis</h1></th>
             <th scope="col"><h1>Akcja</h1></th>
         </tr>
         <thead>
         <tbody>
-        <c:forEach items="${categoryList}" var="category">
+        <c:forEach items="${institutionList}" var="institution">
 
             <tr>
-                <td>${category.id}</td>
-                <td>${category.name}</td>
+                <td>${institution.id}</td>
+                <td>${institution.name}</td>
+                <td>${institution.description}</td>
                 <td><form method="get"
                           action="add"> <%--JEDNOCZEŚNIE DODAJE I EDYTUJE--%>
-                    <input type="hidden" name="toEditId" value="${category.id}">
+                    <input type="hidden" name="toEditId" value="${institution.id}">
                     <input type="submit" value="Edytuj">
                 </form>
                     <form method="get"
                           action="remove">
-                        <input type="hidden" name="toRemoveId" value="${category.id}">
+                        <input type="hidden" name="toRemoveId" value="${institution.id}">
                         <input type="submit" value="Usun">
                     </form></td>
             </tr>
@@ -58,7 +60,5 @@
 </section>
 
 <%@ include file="/WEB-INF/views/footer.jsp" %>
-<%--<script src="<c:url value="/resources/js/app.js"/>"></script>--%>
-
 </body>
 </html>

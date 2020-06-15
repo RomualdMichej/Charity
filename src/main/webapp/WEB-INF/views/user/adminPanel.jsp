@@ -21,6 +21,9 @@
 <section class="steps">
     <a href="/category/" class="btn btn--large">Edycja kategorji</a>
 </section>
+<section class="steps">
+    <a href="institution/" class="btn btn--large">Edycja fundacji</a>
+</section>
 <%@ include file="/WEB-INF/views/footer.jsp" %>
 </body>
 </html>

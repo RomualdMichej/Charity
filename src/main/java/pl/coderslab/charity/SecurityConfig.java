@@ -122,7 +122,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                                 "/user/edit",
                                 "/admin",
                                 "/user/registerAdmin",
-                                "/category/**")
+                                "/category/**",
+                                "/institution/**")
                 .hasAuthority("ADMIN")
 //                .antMatchers("/donation/**")
 //                .hasAnyAuthority("USER", "ADMIN")
