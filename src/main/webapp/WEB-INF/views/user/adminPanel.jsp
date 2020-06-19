@@ -19,7 +19,7 @@
 <a href="/user/showAll" class="btn btn--large">Edycja urzytkowników</a>
 </section>
 <section class="steps">
-    <a href="/category/" class="btn btn--large">Edycja kategorji</a>
+    <a href="category/" class="btn btn--large">Edycja kategorji</a>
 </section>
 <section class="steps">
     <a href="institution/" class="btn btn--large">Edycja fundacji</a>
