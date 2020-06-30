@@ -114,7 +114,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/login", "/donation/**")
+                .antMatchers("/login", "/donation/add")
                 .permitAll()
                 .antMatchers
                         ("/user/showAll",
@@ -123,7 +123,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                                 "/admin",
                                 "/user/registerAdmin",
                                 "/category/**",
-                                "/institution/**")
+                                "/institution/**",
+                                "/donation/show")
                 .hasAuthority("ADMIN")
 //                .antMatchers("/donation/**")
 //                .hasAnyAuthority("USER", "ADMIN")

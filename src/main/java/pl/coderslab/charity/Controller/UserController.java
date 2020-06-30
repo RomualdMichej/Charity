@@ -56,10 +56,6 @@ public class UserController {
 
     @PostMapping("/edit")
     public String editUser(User user, Model model) {
-//        user.setPassword(passwordEncoder.encode(user.getPassword()));
-//        userRepository.save(user);
-//        model.addAttribute("userList", userRepository.findAll());
-//        return "allUsers";
         String note = "Hasła nie są identyczne!";
         if(user.getPassword().equals(user.getPassword2())) {
             user.setPassword(passwordEncoder.encode(user.getPassword()));

@@ -32,6 +32,12 @@ public class DonationController {
         this.institutionReopsitory = institutionReopsitory;
     }
 
+    @GetMapping("/show")
+    public String showAllDonations(Model model) {
+        model.addAttribute("donationList", donationRepository.findAll());
+        return "donation/allDonations";
+    }
+
     @GetMapping("/add")
     public String show(Model model) {
         model.addAttribute("categoryList", categoryRepository.findAll());
@@ -75,12 +81,7 @@ public class DonationController {
 
         donationRepository.save(donation);
 
-        return  "formDirec/form-confirmation";
+        return "formDirec/form-confirmation";
     }
 
-//    @PostMapping("/add")
-//    public String postRegister(@ModelAttribute Donation donation){
-//        donationRepository.save(donation);
-//        return "form-confirmation";
-//    }
 }
