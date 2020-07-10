@@ -6,7 +6,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.charity.model.Category;
 import pl.coderslab.charity.model.Donation;
-import pl.coderslab.charity.model.User;
 import pl.coderslab.charity.repositorys.CategoryRepository;
 import pl.coderslab.charity.repositorys.DonationRepository;
 import pl.coderslab.charity.repositorys.InstitutionReopsitory;
@@ -47,8 +46,9 @@ public class DonationController {
     }
 
 
-    @PostMapping("/add")
-    public String addDonation(@RequestParam String categoriesId,
+    @PostMapping("/add") //JEDNOCZEŚNIE DODAJE I EDYTUJE
+    public String addDonation(Model model,
+                              @RequestParam String categoriesId,
                               @RequestParam Integer bags,
                               @RequestParam Long organizationId,
                               @RequestParam String address,
@@ -57,31 +57,91 @@ public class DonationController {
                               @RequestParam String phone,
                               @RequestParam String data,
                               @RequestParam LocalTime time,
+                              @RequestParam long toEditId,
                               @RequestParam String more_info) {
 
         List<Category> categoryList = new ArrayList<>();
-        String[] partsOfCategories = categoriesId.split(",");
-        for (String part : partsOfCategories) {
-            categoryList.add(categoryRepository.findCategoryById(Long.parseLong(part)));
+        if (categoriesId.equals("")){
+            categoryList = donationRepository.findById(toEditId).getCategoryList();
+        }else {
+            String[] partsOfCategories = categoriesId.split(",");
+            for (String part : partsOfCategories) {
+                categoryList.add(categoryRepository.findCategoryById(Long.parseLong(part)));
+            }
         }
-        String[] partsOfData = data.split("-");
-        LocalDate date = LocalDate.of(Integer.parseInt(partsOfData[0]),
-                Integer.parseInt(partsOfData[1]), Integer.parseInt(partsOfData[2]));
 
+        LocalDate date;
+        if (data.equals("")){
+            date = donationRepository.findById(toEditId).getPickUpDate();
+        }else {
+            String[] partsOfData = data.split("-");
+            date = LocalDate.of(Integer.parseInt(partsOfData[0]),
+                    Integer.parseInt(partsOfData[1]), Integer.parseInt(partsOfData[2]));
+        }
         Donation donation = new Donation();
+
         donation.setCategoryList(categoryList);
-        donation.setCity(city);
-        donation.setInstitution(institutionReopsitory.findInstitutionById(organizationId));
-        donation.setPickUpDate(date);
-        donation.setPickUpTime(time);
-        donation.setQuantity(bags);
-        donation.setStreet(address);
-        donation.setZipCode(postcode);
-        donation.setPickUpComment(more_info);
+
+        if(city.equals("")) {
+            donation.setCity(donationRepository.findById(toEditId).getCity());
+        }else {
+            donation.setCity(city);
+        }
+        if(organizationId == null){
+            donation.setInstitution(donationRepository.findById(toEditId).getInstitution());
+        }else {
+            donation.setInstitution(institutionReopsitory.findInstitutionById(organizationId));
+        }
+        if(data.equals("")){
+            donation.setPickUpDate(donationRepository.findById(toEditId).getPickUpDate());
+        }else {
+            donation.setPickUpDate(date);
+        }
+        if(time == null){
+            donation.setPickUpTime(donationRepository.findById(toEditId).getPickUpTime());
+        }else {
+            donation.setPickUpTime(time);
+        }
+        if(bags == null){
+            donation.setQuantity(donationRepository.findById(toEditId).getQuantity());
+        }else {
+            donation.setQuantity(bags);
+        }
+        if(address.equals("")){
+            donation.setStreet(donationRepository.findById(toEditId).getStreet());
+        }else {
+            donation.setStreet(address);
+        }
+        if(postcode.equals("")){
+            donation.setZipCode(donationRepository.findById(toEditId).getZipCode());
+        }else {
+            donation.setZipCode(postcode);
+        }
+        if(more_info.equals("")){
+            donation.setPickUpComment(donationRepository.findById(toEditId).getPickUpComment());
+        }else {
+            donation.setPickUpComment(more_info);
+        }
+        if(toEditId != 0) {
+            donation.setId(toEditId);
+        }
 
         donationRepository.save(donation);
 
-        return "formDirec/form-confirmation";
+        if(toEditId != 0) {
+            model.addAttribute("donationList", donationRepository.findAll());
+            return "donation/allDonations";
+        }else {
+            return "formDirec/form-confirmation";
+
+        }
     }
 
+    @GetMapping("/edit")
+    public String editGet(Model model, @RequestParam long toEditId) {
+        model.addAttribute("categoryList", categoryRepository.findAll());
+        model.addAttribute("institutionList", institutionReopsitory.findAll());
+        model.addAttribute("donation", donationRepository.findById(toEditId));
+        return "donation/edit";
+    }
 }

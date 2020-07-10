@@ -16,15 +16,8 @@
     <%@ include file="/WEB-INF/views/header.jsp" %>
 </header>
 <section class="steps">
-    <h2>Darowizny</h2>
+    <h2>Darowizna</h2>
 </section>
-<%--<section>--%>
-<%--    <form action="add" method="get">--%>
-<%--        <h1><input type="submit" value="Dodaj kategorię"></h1>--%>
-<%--        <input type="hidden" name="toEditId" value=0>--%>
-<%--    </form>--%>
-<%--</section>--%>
-
 
 <section class="steps">
     <table class="table" border="1">
@@ -43,30 +36,33 @@
         </tr>
         <thead>
         <tbody>
-        <c:forEach items="${donationList}" var="donation">
+<%--        <c:forEach items="${donationList}" var="donation">--%>
 
             <tr>
+                <form method="post"
+                      action="add">
                 <td>${donation.id}</td>
-                <td>${donation.city}</td>
-                <td>${donation.pickUpDate}</td>
-                <td>${donation.pickUpTime}</td>
-                <td>${donation.quantity}</td>
-                <td>${donation.street}</td>
-                <td>${donation.zipCode}</td>
-                <td>${donation.institution.id}</td>
-                <td>${donation.pickUpComment}</td>
-                <td><form method="get"
-                          action="edit">
+                <td><input type="text" name="city" placeholder="${donation.city}"></td>
+                <td><input type="date" name="data" placeholder="${donation.pickUpDate}"></td>
+                <td><input type="time" name="time" placeholder="${donation.pickUpTime}"></td>
+                <td><input type="text" name="bags" placeholder="${donation.quantity}"></td>
+                <td><input type="text" name="address" placeholder="${donation.street}"></td>
+                <td><input type="text" name="postcode" placeholder="${donation.zipCode}"></td>
+                <td><input type="text" name="organizationId" placeholder="${donation.institution.id}"></td>
+                <td><input type="text" name="more_info" placeholder="${donation.pickUpComment}"></td>
+                <td>
                     <input type="hidden" name="toEditId" value="${donation.id}">
-                    <input type="submit" value="Edytuj">
+                    <input type="hidden" name="phone" value="">
+                    <input type="hidden" name="categoriesId" value="">
+                    <input type="submit" value="Zapisz">
                 </form>
-                    <form method="get"
-                          action="remove">
-                        <input type="hidden" name="toRemoveId" value="${donation.id}">
-                        <input type="submit" value="Usun">
-                    </form></td>
+<%--                    <form method="get"--%>
+<%--                          action="remove">--%>
+<%--                        <input type="hidden" name="toRemoveId" value="${donation.id}">--%>
+<%--                        <input type="submit" value="Usun">--%>
+<%--                    </form></td>--%>
             </tr>
-        </c:forEach>
+<%--        </c:forEach>--%>
         </tbody>
     </table>
 </section>
