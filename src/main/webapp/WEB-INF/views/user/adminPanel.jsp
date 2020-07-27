@@ -25,7 +25,7 @@
     <a href="institution/" class="btn btn--large">Edycja fundacji</a>
 </section>
 <section class="steps">
-    <a href="donation/show" class="btn btn--large">Edycja darowizn</a>
+    <a href="donation/" class="btn btn--large">Edycja darowizn</a>
 </section>
 <%@ include file="/WEB-INF/views/footer.jsp" %>
 </body>

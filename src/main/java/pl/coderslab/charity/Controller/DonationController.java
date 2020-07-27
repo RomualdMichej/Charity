@@ -9,6 +9,7 @@ import pl.coderslab.charity.model.Donation;
 import pl.coderslab.charity.repositorys.CategoryRepository;
 import pl.coderslab.charity.repositorys.DonationRepository;
 import pl.coderslab.charity.repositorys.InstitutionReopsitory;
+import pl.coderslab.charity.util.ViewHelper;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -31,7 +32,7 @@ public class DonationController {
         this.institutionReopsitory = institutionReopsitory;
     }
 
-    @GetMapping("/show")
+    @GetMapping("/")
     public String showAllDonations(Model model) {
         model.addAttribute("donationList", donationRepository.findAll());
         return "donation/allDonations";
@@ -143,5 +144,20 @@ public class DonationController {
         model.addAttribute("institutionList", institutionReopsitory.findAll());
         model.addAttribute("donation", donationRepository.findById(toEditId));
         return "donation/edit";
+    }
+
+    @GetMapping("/remove")
+    public String removeGet(@RequestParam long toRemoveId, Model model) {
+        model.addAttribute("donation", donationRepository.findById(toRemoveId));
+        model.addAttribute("viewHelper", new ViewHelper());
+        return "donation/remove";
+    }
+
+    @PostMapping("/remove")
+    public String removePost(@RequestParam long toRemoveId, @ModelAttribute ViewHelper viewHelper) {
+        if(viewHelper.getOption().equals("confirmed")) {
+            donationRepository.deleteById(toRemoveId);
+        }
+        return "redirect:";
     }
 }
