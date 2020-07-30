@@ -41,20 +41,29 @@
             <tr>
                 <form method="post"
                       action="add">
-                <td>${donation.id}</td>
-                <td><input type="text" name="city" placeholder="${donation.city}"></td>
-                <td><input type="date" name="data" placeholder="${donation.pickUpDate}"></td>
-                <td><input type="time" name="time" placeholder="${donation.pickUpTime}"></td>
-                <td><input type="text" name="bags" placeholder="${donation.quantity}"></td>
-                <td><input type="text" name="address" placeholder="${donation.street}"></td>
-                <td><input type="text" name="postcode" placeholder="${donation.zipCode}"></td>
-                <td><input type="text" name="organizationId" placeholder="${donation.institution.id}"></td>
-                <td><input type="text" name="more_info" placeholder="${donation.pickUpComment}"></td>
-                <td>
-                    <input type="hidden" name="toEditId" value="${donation.id}">
-                    <input type="hidden" name="phone" value="">
-                    <input type="hidden" name="categoriesId" value="">
-                    <input type="submit" value="Zapisz">
+
+                    <td>${donation.id}</td>
+                    <td><input type="text" name="city" placeholder="${donation.city}"></td>
+                    <td><input type="date" name="data" placeholder="${donation.pickUpDate}"></td>
+                    <td><input type="time" name="time" placeholder="${donation.pickUpTime}"></td>
+                    <td><input type="text" name="bags" placeholder="${donation.quantity}"></td>
+                    <td><input type="text" name="address" placeholder="${donation.street}"></td>
+                    <td><input type="text" name="postcode" placeholder="${donation.zipCode}"></td>
+                    <td>
+                        <select name="organizationId">
+<%--                            <option value="2" selected disabled hidden>--%>
+<%--                                ${donation.institution.name}</option>--%>
+                            <c:forEach items="${institutionList}" var="institution">
+                                <option value="${institution.id}">${institution.name}</option>
+                            </c:forEach>
+                        </select>
+                    </td>
+                    <td><input type="text" name="more_info" placeholder="${donation.pickUpComment}"></td>
+                    <td>
+                        <input type="hidden" name="toEditId" value="${donation.id}">
+                        <input type="hidden" name="phone" value="">
+                        <input type="hidden" name="categoriesId" value="">
+                        <input type="submit" value="Zapisz">
                 </form>
 <%--                    <form method="get"--%>
 <%--                          action="remove">--%>
