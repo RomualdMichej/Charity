@@ -88,7 +88,9 @@ public class DonationController {
         }else {
             donation.setCity(city);
         }
-            donation.setInstitution(institutionReopsitory.findInstitutionById(organizationId));
+
+        donation.setInstitution(institutionReopsitory.findInstitutionById(organizationId)); // organizationId nigdy nie jet null
+
         if(data.equals("")){
             donation.setPickUpDate(donationRepository.findById(toEditId).getPickUpDate());
         }else {

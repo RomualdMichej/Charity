@@ -31,17 +31,15 @@
             <th scope="col"><h1>Adres</h1></th>
             <th scope="col"><h1>kod</h1></th>
             <th scope="col"><h1>Fundacja</h1></th>
+            <th scope="col"><h1>Kategorie</h1></th>
             <th scope="col"><h1>Uwagi</h1></th>
             <th scope="col"><h1>Akcja</h1></th>
         </tr>
-        <thead>
+        </thead>
         <tbody>
-<%--        <c:forEach items="${donationList}" var="donation">--%>
-
             <tr>
                 <form method="post"
                       action="add">
-
                     <td>${donation.id}</td>
                     <td><input type="text" name="city" placeholder="${donation.city}"></td>
                     <td><input type="date" name="data" placeholder="${donation.pickUpDate}"></td>
@@ -58,6 +56,45 @@
                             </c:forEach>
                         </select>
                     </td>
+                    <td>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th scope="col">Obecne kategorie</th>
+                                    <th scope="col">Zmień kategorie</th>
+                                </tr>
+                            </thead>
+                            <td>
+                                <ul>
+                                    <c:forEach items="${donation.categoryList}" var="category">
+                                        <li>${category.name}</li>
+                                    </c:forEach>
+                                </ul>
+                            </td>
+                        <td>
+                            <div data-step="1" class="active">
+                            <c:forEach items="${categoryList}" var="category" varStatus="loopStatus">
+                            <div class="form-group form-group--checkbox">
+                                <label>
+                                    <input
+                                            id="categorieInput${loopStatus.count}"
+                                            class="category"
+                                            type="checkbox"
+                                            name="categoriesId"
+                                            value=${category.id}
+                                    />
+                                    <span class="checkbox"></span>
+                                    <span class="description categoryName">${category.name}</span>
+                                </label>
+                            </div>
+                            </c:forEach>
+                        </td>
+
+                        </table>
+
+
+                    </td>
+
                     <td><input type="text" name="more_info" placeholder="${donation.pickUpComment}"></td>
                     <td>
                         <input type="hidden" name="toEditId" value="${donation.id}">

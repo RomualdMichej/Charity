@@ -18,14 +18,6 @@
 <section class="steps">
     <h2>Darowizny</h2>
 </section>
-<%--<section>--%>
-<%--    <form action="add" method="get">--%>
-<%--        <h1><input type="submit" value="Dodaj kategorię"></h1>--%>
-<%--        <input type="hidden" name="toEditId" value=0>--%>
-<%--    </form>--%>
-<%--</section>--%>
-
-
 <section class="steps">
     <table class="table" border="1">
         <thead>
@@ -38,6 +30,7 @@
             <th scope="col"><h1>Adres</h1></th>
             <th scope="col"><h1>kod</h1></th>
             <th scope="col"><h1>Fundacja</h1></th>
+            <th scope="col"><h1>Kategorie</h1></th>
             <th scope="col"><h1>Uwagi</h1></th>
             <th scope="col"><h1>Akcja</h1></th>
         </tr>
@@ -54,6 +47,13 @@
                 <td>${donation.street}</td>
                 <td>${donation.zipCode}</td>
                 <td>${donation.institution.id}</td>
+                <td>
+                    <ul>
+                        <c:forEach items="${donation.categoryList}" var="category">
+                            <li>${category.name}</li>
+                        </c:forEach>
+                    </ul>
+                </td>
                 <td>${donation.pickUpComment}</td>
                 <td><form method="get"
                           action="edit">
