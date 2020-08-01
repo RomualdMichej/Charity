@@ -88,11 +88,7 @@ public class DonationController {
         }else {
             donation.setCity(city);
         }
-        if(organizationId == null){
-            donation.setInstitution(donationRepository.findById(toEditId).getInstitution());
-        }else {
             donation.setInstitution(institutionReopsitory.findInstitutionById(organizationId));
-        }
         if(data.equals("")){
             donation.setPickUpDate(donationRepository.findById(toEditId).getPickUpDate());
         }else {

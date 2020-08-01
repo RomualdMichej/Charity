@@ -51,8 +51,8 @@
                     <td><input type="text" name="postcode" placeholder="${donation.zipCode}"></td>
                     <td>
                         <select name="organizationId">
-<%--                            <option value="2" selected disabled hidden>--%>
-<%--                                ${donation.institution.name}</option>--%>
+                            <option value="${donation.institution.id}" selected hidden>
+                                Wybierz z listy</option>
                             <c:forEach items="${institutionList}" var="institution">
                                 <option value="${institution.id}">${institution.name}</option>
                             </c:forEach>
