@@ -42,16 +42,18 @@
             <td>${user.id}</td>
             <td>${user.email}</td>
             <td class="enable">${user.enable}</td>
-            <td><form method="get"
+            <td>
+                <form method="get"
                       action="edit">
                 <input type="hidden" name="toEditId" value="${user.id}">
                 <input type="submit" value="Edytuj">
-            </form>
+                </form>
                 <form method="get"
                       action="remove">
                     <input type="hidden" name="toRemoveId" value="${user.id}">
                     <input type="submit" value="Usun">
-                </form></td>
+                </form>
+            </td>
         </tr>
     </c:forEach>
     </tbody>

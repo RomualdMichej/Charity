@@ -26,10 +26,12 @@ public class CustomUserDetailsServiceImpl implements CustomUserDetailsService {
     public UserDetails loadUserByUsername(String userEmail) throws UsernameNotFoundException {
         User user = userRepository.findAllByEmail(userEmail);
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
-        if(user.getEnable() == 1) {
+        if (user.getEnable() == 1) {
             grantedAuthorities.add(new SimpleGrantedAuthority("USER"));
-        }else {
+        }else if (user.getEnable() == 0){
             grantedAuthorities.add(new SimpleGrantedAuthority("ADMIN"));
+        }else {
+            grantedAuthorities.add(new SimpleGrantedAuthority("BANNED"));
         }
         return new CurentUser(user.getEmail(),
                 user.getPassword(),

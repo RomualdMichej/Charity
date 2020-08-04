@@ -182,11 +182,14 @@ document.addEventListener("DOMContentLoaded", function() {
   for (var i = 0; i < enable.length ; i++) {
     if(enable[i].innerHTML === '1') {
       enable[i].innerHTML = 'NIE';
-      enable[i].className = 'admin';
-    }else {
-      enable[i].innerHTML = 'TAK';
       enable[i].className = 'user';
+    }else if (enable[i].innerHTML === '0'){
+      enable[i].innerHTML = 'TAK';
+      enable[i].className = 'admin';
 
+    }else {
+      enable[i].innerHTML = 'ZABLOKOWANY';
+      enable[i].className = 'ban';
     }
   }
 

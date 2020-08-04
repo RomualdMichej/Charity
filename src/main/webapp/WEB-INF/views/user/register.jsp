@@ -39,8 +39,28 @@
         <div class="form-group form-group--buttons">
           <a href="login.html" class="btn btn--without-border">Zaloguj się</a>
           <button class="btn" type="submit">Załóż konto</button>
+<%--          <c:if test="${user.enable == 1}">--%>
+<%--&lt;%&ndash;            <a href="/user/ban" class="btn btn--without-border">Zaloguj się</a>&ndash;%&gt;--%>
+
+<%--            <form method="get"--%>
+<%--                  action="/user/ban">--%>
+<%--              <input type="hidden" name="toEditId" value="${user.id}">--%>
+<%--              <input type="submit" value="Usun">--%>
+<%--            </form>--%>
+
+<%--          </c:if>--%>
         </div>
       </spring:form>
+      <c:if test="${user.enable == 1}">
+        <%--            <a href="/user/ban" class="btn btn--without-border">Zaloguj się</a>--%>
+
+        <form method="get"
+              action="ban">
+          <input type="hidden" name="toBanId" value="${user.id}">
+          <input type="submit" value="ZABLOKUJ UŻYTKOWNIKA">
+        </form>
+
+      </c:if>
     </section>
     <%@ include file="/WEB-INF/views/footer.jsp" %>
   </body>

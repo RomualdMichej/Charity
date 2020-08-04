@@ -35,14 +35,14 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public String postRegister(User user, Model model){
+    public String postRegister(User user, Model model) {
         user.setEnable(1);
         String note = "Hasła nie są identyczne!";
-        if(user.getPassword().equals(user.getPassword2())) {
+        if (user.getPassword().equals(user.getPassword2())) {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
             userRepository.save(user);
             return "user/login";
-        }else {
+        } else {
             model.addAttribute("note", note);
             return "user/register";
         }
@@ -57,12 +57,12 @@ public class UserController {
     @PostMapping("/edit")
     public String editUser(User user, Model model) {
         String note = "Hasła nie są identyczne!";
-        if(user.getPassword().equals(user.getPassword2())) {
+        if (user.getPassword().equals(user.getPassword2())) {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
             userRepository.save(user);
             model.addAttribute("userList", userRepository.findAll());
             return "user/allUsers";
-        }else {
+        } else {
             model.addAttribute("note", note);
             return "user/register";
         }
@@ -77,7 +77,7 @@ public class UserController {
 
     @PostMapping("remove")
     public String removeUser(@RequestParam long toRemoveId, @ModelAttribute ViewHelper viewHelper, Model model) {
-        if(viewHelper.getOption().equals("confirmed")) {
+        if (viewHelper.getOption().equals("confirmed")) {
 //            startRepository.updateToNull(competitorRepository.findById(toRemoveId));
 //            List<Result> resultList = resultRepository.findAllByCompetitor(competitorRepository.findById(toRemoveId));
 //            for (Result  result : resultList) {
@@ -96,17 +96,35 @@ public class UserController {
     }
 
     @PostMapping("/registerAdmin")
-    public String postRegisterAdmin(User user, Model model){
+    public String postRegisterAdmin(User user, Model model) {
         user.setEnable(0);
         String note = "Hasła nie są identyczne!";
-        if(user.getPassword().equals(user.getPassword2())) {
+        if (user.getPassword().equals(user.getPassword2())) {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
             userRepository.save(user);
             model.addAttribute("userList", userRepository.findAll());
             return "user/allUsers";
-        }else {
+        } else {
             model.addAttribute("note", note);
             return "user/register";
         }
+    }
+
+    @GetMapping("/ban")
+    public String initBanUser(@RequestParam long toBanId, Model model) {
+        model.addAttribute("user", userRepository.findById(toBanId));
+        model.addAttribute("viewHelper", new ViewHelper());
+        return "user/ban";
+    }
+
+    @PostMapping("ban")
+    public String baneUser(@RequestParam long toBanId, @ModelAttribute ViewHelper viewHelper, Model model) {
+        if (viewHelper.getOption().equals("confirmed")) {
+            User user = userRepository.findById(toBanId);
+            user.setEnable(2);
+            userRepository.save(user);
+        }
+        model.addAttribute("userList", userRepository.findAll());
+        return "user/allUsers";
     }
 }

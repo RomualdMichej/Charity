@@ -48,11 +48,14 @@ h1 {
 }
 
 .user {
-  background-color: yellowgreen;
+  background-color: lightpink;
 }
 
 .admin {
-  background-color: lightpink;
+  background-color: yellowgreen;
+}
+.ban {
+  background-color: red;
 }
 
 th, td {
