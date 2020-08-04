@@ -102,19 +102,13 @@
                         <input type="hidden" name="categoriesId" value="">
                         <input type="submit" value="Zapisz">
                 </form>
-<%--                    <form method="get"--%>
-<%--                          action="remove">--%>
-<%--                        <input type="hidden" name="toRemoveId" value="${donation.id}">--%>
-<%--                        <input type="submit" value="Usun">--%>
-<%--                    </form></td>--%>
             </tr>
-<%--        </c:forEach>--%>
         </tbody>
     </table>
 </section>
 
 <%@ include file="/WEB-INF/views/footer.jsp" %>
-<%--<script src="<c:url value="/resources/js/app.js"/>"></script>--%>
+<script src="<c:url value="/resources/js/app.js"/>"></script>
 
 </body>
 </html>
