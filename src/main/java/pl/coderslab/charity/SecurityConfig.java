@@ -36,7 +36,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/login")
                 .permitAll()
                 .antMatchers("/donation/add")
-                .hasAuthority("USER")
+                .hasAnyAuthority("USER","ADMIN")
                 .antMatchers
                         ("/user/showAll",
                                 "/user/remove",
