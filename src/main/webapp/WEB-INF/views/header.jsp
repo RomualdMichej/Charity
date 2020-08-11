@@ -14,8 +14,6 @@
                 <li><a href="/logout">Wyloguj</a></li>
             </form>
         </sec:authorize>
-<%--        <li><a href="hi/">HI</a></li>--%>
-
     </ul>
 
     <ul>
@@ -27,6 +25,12 @@
         <li><a href="#" class="btn btn--without-border">Kontakt</a></li>
         <sec:authorize access="hasAuthority('ADMIN')">
             <li><a href="/admin" class="btn btn--without-border active">Admin Panel</a></li>
+        </sec:authorize>
+        <sec:authorize access="isAuthenticated()">
+        <form action="<c:url value="user/showOne"/>" method="get">
+            <input type="hidden" name="id" value="1"/>
+            <li><button type="submit" class="btn btn--without-border active">Moje konto</button></li>
+        </form>
         </sec:authorize>
     </ul>
 </nav>

@@ -131,4 +131,10 @@ public class UserController {
         model.addAttribute("userList", userRepository.findAll());
         return "user/allUsers";
     }
+
+    @GetMapping("showOne")
+    @ResponseBody
+    public String initUsersAcount(@RequestParam String id){
+        return "Work in progres!" + " " + id;
+    }
 }
