@@ -118,12 +118,21 @@ public class UserController {
     }
 
     @PostMapping("ban")
-    public String baneUser(@RequestParam long toBanId, @ModelAttribute ViewHelper viewHelper, Model model) {
+    public String banUser(@RequestParam long toBanId, @ModelAttribute ViewHelper viewHelper, Model model) {
         if (viewHelper.getOption().equals("confirmed")) {
             User user = userRepository.findById(toBanId);
             user.setEnable(2);
             userRepository.save(user);
         }
+        model.addAttribute("userList", userRepository.findAll());
+        return "user/allUsers";
+    }
+
+    @PostMapping("unban")
+    public String unBanUser(@RequestParam long toUnBanId, Model model) {
+        User user = userRepository.findById(toUnBanId);
+        user.setEnable(1);
+        userRepository.save(user);
         model.addAttribute("userList", userRepository.findAll());
         return "user/allUsers";
     }

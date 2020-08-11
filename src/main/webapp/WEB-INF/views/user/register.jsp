@@ -61,6 +61,14 @@
         </form>
 
       </c:if>
+      <c:if test="${user.enable == 2}">
+        <form method="post"
+              action="unban">
+          <input type="hidden" name="toUnBanId" value="${user.id}">
+          <input type="submit" value="ODBLOKUJ UŻYTKOWNIKA">
+        </form>
+
+      </c:if>
     </section>
     <%@ include file="/WEB-INF/views/footer.jsp" %>
   </body>
