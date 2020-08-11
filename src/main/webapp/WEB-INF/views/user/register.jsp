@@ -24,6 +24,15 @@
         <div class="form-group">
           <spring:input path="email" type="email" name="email" placeholder="Email" />
         </div>
+        <div class="form-group">
+          <spring:input path="city" type="text" name="city" placeholder="miasto" />
+        </div>
+        <div class="form-group">
+          <spring:input path="street" type="text" name="street" placeholder="adres" />
+        </div>
+        <div class="form-group">
+          <spring:input path="zipCode" type="text" name="zipCode" placeholder="kod pocztowy" />
+        </div>
         <c:if test="${not empty note}">
           <div class="form-group">
             <p class="nova">${note}</p>
@@ -39,21 +48,9 @@
         <div class="form-group form-group--buttons">
           <a href="login.html" class="btn btn--without-border">Zaloguj się</a>
           <button class="btn" type="submit">Załóż konto</button>
-<%--          <c:if test="${user.enable == 1}">--%>
-<%--&lt;%&ndash;            <a href="/user/ban" class="btn btn--without-border">Zaloguj się</a>&ndash;%&gt;--%>
-
-<%--            <form method="get"--%>
-<%--                  action="/user/ban">--%>
-<%--              <input type="hidden" name="toEditId" value="${user.id}">--%>
-<%--              <input type="submit" value="Usun">--%>
-<%--            </form>--%>
-
-<%--          </c:if>--%>
         </div>
       </spring:form>
       <c:if test="${user.enable == 1}">
-        <%--            <a href="/user/ban" class="btn btn--without-border">Zaloguj się</a>--%>
-
         <form method="get"
               action="ban">
           <input type="hidden" name="toBanId" value="${user.id}">

@@ -12,6 +12,9 @@ public class User {
     private String email;
     private String password;
     private int enable;
+    private String street;
+    private String city;
+    private String zipCode;
     @Transient
     private String password2;
 
@@ -35,6 +38,16 @@ public class User {
         return password2;
     }
 
+    public String getStreet() {return  street; }
+
+    public String getCity() {
+        return city;
+    }
+
+    public String getZipCode() {
+        return zipCode;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -53,5 +66,17 @@ public class User {
 
     public void setPassword2(String password2) {
         this.password2 = password2;
+    }
+
+    public void setStreet(String street){
+        this.street = street;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
     }
 }

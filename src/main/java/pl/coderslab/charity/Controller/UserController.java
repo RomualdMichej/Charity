@@ -78,11 +78,6 @@ public class UserController {
     @PostMapping("remove")
     public String removeUser(@RequestParam long toRemoveId, @ModelAttribute ViewHelper viewHelper, Model model) {
         if (viewHelper.getOption().equals("confirmed")) {
-//            startRepository.updateToNull(competitorRepository.findById(toRemoveId));
-//            List<Result> resultList = resultRepository.findAllByCompetitor(competitorRepository.findById(toRemoveId));
-//            for (Result  result : resultList) {
-//                resultRepository.delete(result);
-//            }
             userRepository.deleteById(toRemoveId);
         }
         model.addAttribute("userList", userRepository.findAll());

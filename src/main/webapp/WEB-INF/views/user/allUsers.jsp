@@ -32,6 +32,9 @@
         <th scope="col"><h1>Id</h1></th>
         <th scope="col"><h1>Email</h1></th>
         <th scope="col"><h1>Czy admin</h1></th>
+        <th scope="col"><h1>Miasto</h1></th>
+        <th scope="col"><h1>Adres</h1></th>
+        <th scope="col"><h1>Kod Pocztowy</h1></th>
         <th scope="col"><h1>Akcja</h1></th>
     </tr>
     <thead>
@@ -42,6 +45,9 @@
             <td>${user.id}</td>
             <td>${user.email}</td>
             <td class="enable">${user.enable}</td>
+            <td>${user.city}</td>
+            <td>${user.street}</td>
+            <td>${user.zipCode}</td>
             <td>
                 <form method="get"
                       action="edit">
